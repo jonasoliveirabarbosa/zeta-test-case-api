@@ -2,39 +2,12 @@ services:
   zetaapi:
     container_name: zetaapi
     image: jonas/nestjs
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - 3001:3001
     volumes:
       - type: bind
         source: .
         target: /app
-    build: .
-    ports:
-      - 3001:3001
-    depends_on:
-      - postgres
-  postgres:
-    container_name: postgres
-    image: postgres
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      PGDATA: /data/postgres
-      POSTGRES_DB: postgres
-    volumes:
-      - postgres:/data/postgres
-    ports:
-      - "5332:5432"
-    networks:
-      - db
-    restart: unless-stopped
-    healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -d postgres" ]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-
-networks:
-  db:
-    driver: bridge
-
-volumes:
-  postgres:
