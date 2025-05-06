@@ -2,7 +2,6 @@ import {
   ClassSerializerInterceptor,
   Controller,
   Get,
-  Param,
   Query,
   SerializeOptions,
   UseInterceptors,
@@ -17,13 +16,16 @@ export class StoreController {
 
   @UseInterceptors(ClassSerializerInterceptor)
   @SerializeOptions({ type: StoreParameters })
-  @Get()
-  findAll(@Query() params: StoreParameters): Promise<Store[]> {
+  @Get('')
+  findAll(
+    @Query() params: StoreParameters,
+  ): Promise<{ data: Store[]; total: number }> {
+    console.log('Fetching stores with params:', params);
     return this.storeService.findAll(params);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.storeService.findOne(id);
+  @Get('/list-status')
+  getStatus(): Promise<string[]> {
+    return this.storeService.getStatus();
   }
 }

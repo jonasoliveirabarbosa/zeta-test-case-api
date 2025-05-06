@@ -43,4 +43,6 @@ export class Store {
 
   @Column({ name: 'cliente', type: 'bool' })
   hasClient: boolean;
+
+  distance?: number;
 }
