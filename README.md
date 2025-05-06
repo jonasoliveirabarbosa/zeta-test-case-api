@@ -1,6 +1,6 @@
-## Next.js Store API with PostgreSQL
+## Nest.js Store API with PostgreSQL
 
-A geospatial API for store locations built with Next.js and PostgreSQL. Features powerful location-based filtering and sorting capabilities for retail applications.
+A geospatial API for store locations built with Nest.js and PostgreSQL. Features powerful location-based filtering and sorting capabilities for retail applications.
 
 ### Store Information
 This API provides comprehensive data about physical store locations including:
